@@ -1,0 +1,21 @@
+
+
+<table>
+  <tr>
+    <th><%= f.label(:title) %></th>
+    <td><%= f.text_field(:title, :size => 50, :style => "font-size: 1.5em;") %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:content) %></th>
+    <td><%= f.text_area(:content, :cols => 70, :rows => 20, :style => "font-size: 1.1em;") %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:author_id) %></th>
+    <td><%= f.select(:author_id, @user_list) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:status) %></th>
+    <td><%= f.select(:status, ['draft', 'published']) %></td>
+  </tr>
+ 
+</table>

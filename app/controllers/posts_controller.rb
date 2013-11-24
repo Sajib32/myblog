@@ -12,20 +12,57 @@ class PostsController < ApplicationController
 
 	def new 
 		@post = Post.new
+		@user_list = get_user_list
 	end
 
 	def show
+		@post = Post.find(params[:id])
 	end
 
 	def create
+		 # Instantiate a new object using form parameters
+    	 @post = Post.new(params[:post])
+    	 # Save the object
+    	if @post.save
+      	# If save succeeds, redirect to the list action
+      		flash[:notice] = "Post created."
+      		redirect_to(:action => 'list')
+    else
+      	# If save fails, redisplay the form so user can fix problems
+      		@user_list = get_user_list
+      		render('new')
+    	end
+	end
+
+	def edit
+		@post = Post.find(params[:id])
+		@user_list = get_user_list
 	end
 
 	def update
-	end
+		# Find object using form parameters
+    	@post = Post.find(params[:id])
+    	# Update the object
+    	if @post.update_attributes(params[:post])
+      	# If update succeeds, redirect to the list action
+      		flash[:notice] = "Post updated."
+      		redirect_to(:action => 'show', :id => @post.id)
+    	else
+      	# If save fails, redisplay the form so user can fix problems
+      		@user_list = get_user_list
+      		render('edit')
+    end
+end
 
 	def destroy
+		Post.find(params[:id]).destroy
+		redirect_to(:action => 'list')
 	end 
 
+	private
 
-
+	def get_user_list
+		return User.find(:all, :order => 'last_name ASC')
+					.collect {|user| [user.full_name, user.id]}
+	end
 end

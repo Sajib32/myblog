@@ -1,0 +1,12 @@
+<% @page_title = 'New Post' %>
+
+<% link_to('<<Back to list',{:action => 'list'}) %>
+
+<%= form_for(:post, :url => {:action => 'create'}) do |f|  %>
+
+	<%= render(:partial => 'form', :locals => {:f => f}) %>
+
+		<%= submit_tag('Create Post', :style => "margin: 1.5em 0 0 100px;") %>
+
+		 <% end -%> 
+
