@@ -20,8 +20,11 @@ class PostsController < ApplicationController
 	end
 
 	def create
+		post_params = params[:post]
+		author_id = post_params.delete(:author_id)
 		 # Instantiate a new object using form parameters
-    	 @post = Post.new(params[:post])
+    	 @post = Post.new(post_params)
+    	 @post.author = User.find(author_id)
     	 # Save the object
     	if @post.save
       	# If save succeeds, redirect to the list action
@@ -40,13 +43,16 @@ class PostsController < ApplicationController
 	end
 
 	def update
+		post_params = params[:post]
+		author_id = post_params.delete(:author_id)
 		# Find object using form parameters
     	@post = Post.find(params[:id])
+    	 @post.author = User.find(author_id) if @post.author_id != author_id
     	# Update the object
-    	if @post.update_attributes(params[:post])
+    	if @post.update_attributes(post_params)
       	# If update succeeds, redirect to the list action
       		flash[:notice] = "Post updated."
-      		redirect_to(:action => 'show', :id => @post.id)
+      		redirect_to(:action => 'list')
     	else
       	# If save fails, redisplay the form so user can fix problems
       		@user_list = get_user_list

@@ -1,0 +1,24 @@
+<% @page_title = "Show Post: #{@post.title}" %>
+
+
+
+<table>
+	<tr>
+		<td>Title:</td>
+		<td><%= @post.title %></td>
+	</tr>
+	<tr>
+		<td>Content:</td>
+		<td><%= @post.content %></td>
+	</tr>
+	<tr>
+		<td>Status:</td>
+		<td><%= @post.status %></td>
+	</tr>
+
+	
+		
+	
+</table>
+<%= link_to('Edit', {:action => 'edit', :id => @post.id}) %> | 
+		<%= link_to('Back', {:action => 'list'}) %>
