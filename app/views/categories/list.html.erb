@@ -1,0 +1,49 @@
+<% @page_title = "Categories" %>
+ 
+  <%= link_to(">>Back", {:controller => 'category',:action => 'menu'}) %>
+  
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Short Name</th>
+      <th>Description</th>
+    </tr>
+
+   <% for category in @categories %>
+    <tr class="<%= cycle('row1', 'row2') %>">
+      <td><%= category.name %></td>
+      <td><%= category.short_name %></td>
+      <td><%= category.description %></td>
+      
+      <td><%= link_to("Edit", :action => 'list', :id => category.id) %>
+        <%= link_to("Delete", {:action => 'destroy', :id => category.id}, :method => :delete, data: {:confirm => 'Are you sure?'}) %>
+      </td>
+    </tr>
+    <% end %>
+</table>
+
+
+
+<%= form_for(:category, :url => {:action => 'create'}) do |f|  %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Short name</th>
+    <th>Description</th>
+  </tr>
+
+  <tr>
+    <td><%= f.text_field(:name, :size => 20) %></td>
+
+    <td><%= f.text_field(:short_name, :size => 20) %></td>
+
+    <td><%= f.text_field(:description, :size => 35) %></td>
+    
+    <td><%= submit_tag('Create Category') %></td>
+  </tr>
+</table>
+<% end %> 
+
+
+
