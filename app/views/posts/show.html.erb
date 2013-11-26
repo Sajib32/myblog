@@ -14,11 +14,7 @@
 	<tr>
 		<td>Status:</td>
 		<td><%= @post.status %></td>
-	</tr>
-
-	
-		
-	
+	</tr>	
 </table>
 <%= link_to('Edit', {:action => 'edit', :id => @post.id}) %> | 
 		<%= link_to('Back', {:action => 'list'}) %>

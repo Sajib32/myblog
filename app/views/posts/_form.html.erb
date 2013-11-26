@@ -3,7 +3,17 @@
 <table>
   <tr>
     <th><%= f.label(:title) %></th>
-    <td><%= f.text_field(:title, :size => 50, :style => "font-size: 1.5em;") %></td>
+    <td><%= f.text_field(:title, :size => 40, :style => "font-size: 1.5em;") %></td>
+    <td rowspan="2">
+      <div class="categorylist">
+        <h2>Categories:</h2>
+          <% @all_categories.each do |cat| %>
+          <li><%= check_box_tag('categories[]',cat.id,
+            @post.categories.map {|c| c.id}.include?(cat.id)) 
+          %><%= cat.name %></li>
+          <% end %>
+      </div>
+    </td>
   </tr>
   <tr>
     <th><%= f.label(:content) %></th>
