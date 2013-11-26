@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 
 	def list
 		@post = Post.new
-		@posts = Post.order('posts.title ASC')
+		@posts = Post.order('posts.created_at DESC')
 	end
 
 	def new 
