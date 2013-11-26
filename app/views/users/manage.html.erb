@@ -1,0 +1,35 @@
+<% @page_title = 'Current Users' %>
+
+<%= link_to(">>Back", {:controller => 'staff',:action => 'menu'}) %>
+<div class="userlist left">
+  <div class="listing">
+  	<%= render(:partial => 'listing') %>
+  </div>	
+</div>
+	<div class="userlist right">
+		<% if params[:id].blank? %>
+	<h1>New user</h1>
+
+	<%= form_for(:user, :url => { :action => 'create'}) do |f| %>
+	  <%= render(:partial => "form", :locals => {:f => f}) %>
+	  <%= submit_tag("Create") %>
+	<% end %>  
+
+	<% else %>
+	   <h1>Editing user</h1>
+
+	   <%= form_for(:user, :url => {:action => 'update', :id => @user.id}) do |f| %>
+
+	   		<%= render(:partial => "form", :locals => { :f => f }) %>
+	   		<%= submit_tag("Edit") %>
+	   <% end %>
+
+	   <%= link_to('Destroy User', { :action => 'manage', :id => @user }, :method => :delete, data: {:confirm => 'Are you sure?'}) %>
+
+	  <% end %>
+	  
+	  <%= link_to('Back', :action => 'list') %> 
+	</div>
+
+
+
