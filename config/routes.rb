@@ -2,6 +2,10 @@ Myblog::Application.routes.draw do
 
  
 
+  get "comments/list"
+
+  get "comments/show"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

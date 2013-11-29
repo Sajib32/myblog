@@ -1,0 +1,42 @@
+<% @page_title = "Comment Modereation" %>
+ 
+  <%= link_to(">>Back", {:controller => 'staff',:action => 'menu'}) %>
+
+  <p>Show:
+      <%= link_to('all', :status => 'all') %>&nbsp; |
+      <%= link_to('new', :status => nil) %>&nbsp; |
+      <%= link_to('approved', :status => 'approved') %>&nbsp; |
+      <%= link_to('spam', :status => 'spam') %>&nbsp;
+  </p>
+  
+  <%= form_for(@comments, :url => {:action => 'set_status'}) do %>
+    <table>
+      <tr>
+        <th>&nbsp;</th>
+        <th>Comment</th>
+        <th>Status</th>
+        <th>Created</th>
+      </tr>
+
+      <% for comment in @comments %>
+      <tr class="<%= cycle('row1', 'row2') %>">
+        <td><%= check_box_tag('commentlist[]', comment.id) %>&nbsp;</td>
+        <td>
+          <div class="comment">
+            <div class="comment-lead">On post <em><%= comment.post.title %></em> <%= mail_to((comment.author_email), (comment.author)) %>wrote:</div>
+            <div class="comment-text">
+              <%= truncate(comment.content) %>
+              <%= link_to('view all', :action => 'show', :id => comment.id) if (comment.content).length > 2 %>
+            </div>
+          </div>
+        </td>
+        <td><%= comment.status %></td>
+        <td><%= comment.created_at.strftime('%m/%d/%y') %><br/><%=comment.created_at.strftime('%I:%m /%p') %></td>
+      </tr>
+      <% end %>
+    </table>
+      <p>Mark Checked Items As: <%= submit_tag("Approved") %>
+      <%= submit_tag("Spam") %></p>
+
+      <% end %>
+

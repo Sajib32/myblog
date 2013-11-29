@@ -12,3 +12,7 @@
 .userlist .listing { border: 1px solid #000000; height: 40em; }
 .userlist.left { float: left; width: 480px; }
 .userlist.right { float: right; width: 430px; }
+
+.comment{ padding: .5em 1em .5em 1em; }
+.comment-lead{ font-size: .75em; }
+.comment-text{ padding: .5em .5em 1em .5em; }
