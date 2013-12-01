@@ -5,11 +5,11 @@
 				<div class="title"><%= post.title %></div>
 				<div class="byline">
 					<span class="author">by <%= post.author.display_name %></span>
-					<span class="date">on <%= post.created_at.strftime("%B %d, %Y") %></span>
+					<span class="date">on <%= strip_zeroes_from_date(post.created_at.strftime("%B *%d, %Y")) %>(<%= use_relative_time(post.created_at) %>)</span>
 				</div>
-				<div class="body"><%= auto_link(simple_format(post.content)) %></div>
+				<div class="body"><%= prepare_post_body(post.content) %></div>
 				<div class="other-info">
-					<span class="categories">Posted in <%= post.categories.collect {|cat| cat.name}.join(", ") %></span>
+					<span class="categories">Posted in <%= post.categories.collect {|cat| cat.name}.to_sentence %></span>
 				</div>
 			</div>
 		<% end %>

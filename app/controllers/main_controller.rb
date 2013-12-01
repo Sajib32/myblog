@@ -1,5 +1,6 @@
 class MainController < ApplicationController
   
+  include MainHelper 
 
   def index
     list
