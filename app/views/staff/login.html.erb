@@ -1,2 +1,10 @@
-<h1>Staff#login</h1>
-<p>Find me in app/views/staff/login.html.erb</p>
+<% @page_title = 'Staff Area Login' %>
+
+<%= form_for(:user, :action => 'send_login') do %>
+	
+	<p>Username: <%= text_field(params[:username]) %></p>
+
+	<p>Username: <%= password_field('password') %></p>
+
+	<%= submit_tag("Log in") %>
+<% end %>

@@ -8,6 +8,7 @@
 </div>
 	<div class="userlist right">
 		<% if params[:id].blank? %>
+		
 	<h1>New user</h1>
 
 	<%= form_for(:user, :url => { :action => 'manage'}) do |f| %>

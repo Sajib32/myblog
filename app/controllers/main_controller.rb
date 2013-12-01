@@ -1,8 +1,15 @@
 class MainController < ApplicationController
+  
+
   def index
+    list
+    render(:action => 'list')
   end
 
   def list
+    @posts = Post.find(:all,
+        :conditions => "status = 'published' ",
+        :order => 'created_at DESC')
   end
 
   def category
@@ -12,5 +19,6 @@ class MainController < ApplicationController
   end
 
   def view_post
+    @post = Post.find(params[:id])
   end
 end

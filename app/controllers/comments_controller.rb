@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
   	when 'all'
   		@comments = Comment.find(:all, :order => 'created_at DESC')
   	else 'new'	
-    	@comments = Comment.find(:all, :conditions => "status = 'new'", 
+    	@comments = Comment.find(:all, :conditions => "status = 'approved'", 
   									   :order => 'created_at DESC')
     end
   end

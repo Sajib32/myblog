@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
 	layout "staff"
 
+	before_filter :authorize_access
+
 	def index
 		list
 		render('list')

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131120142233) do
+ActiveRecord::Schema.define(:version => 20131130190616) do
 
   create_table "categories", :force => true do |t|
     t.string   "name",        :limit => 50, :null => false
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20131120142233) do
     t.integer  "user_level",      :limit => 3,  :default => 0,  :null => false
     t.datetime "created_at",                                    :null => false
     t.datetime "updated_at",                                    :null => false
+    t.string   "salt",            :limit => 40
   end
 
 end

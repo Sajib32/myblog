@@ -1,2 +1,21 @@
-<h1>Main#list</h1>
-<p>Find me in app/views/main/list.html.erb</p>
+<div id="left-column">
+	<div id="posts">
+		<% @posts.each do |post| %>
+			<div class="post">
+				<div class="title"><%= post.title %></div>
+				<div class="byline">
+					<span class="author">by <%= post.author.display_name %></span>
+					<span class="date">on <%= post.created_at.strftime("%B %d, %Y") %></span>
+				</div>
+				<div class="body"><%= auto_link(simple_format(post.content)) %></div>
+				<div class="other-info">
+					<span class="categories">Posted in <%= post.categories.collect {|cat| cat.name}.join(", ") %></span>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
+
+<div id="right-column">
+
+</div>
