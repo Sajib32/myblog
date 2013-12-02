@@ -21,5 +21,6 @@ class MainController < ApplicationController
 
   def view_post
     @post = Post.find(params[:id])
+    render(:template => 'shared/view_post')
   end
 end

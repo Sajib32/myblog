@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
 
+	include PostsHelper
+
 	layout "staff"
+
 	def index
 		list
 		render('list')
@@ -18,8 +21,12 @@ class PostsController < ApplicationController
 	end
 
 	def show
+		# this action will preview the public view of the post
 		@post = Post.find(params[:id])
+		#render(:controller => 'main', :action => 'view_post')
+		render(:template => 'shared/view_post', :layout => 'application')
 	end
+	alias :view_post :show
 
 	def create
 		post_params = params[:post]
