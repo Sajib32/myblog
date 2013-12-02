@@ -6,10 +6,12 @@
 			<%#= render(:partial => 'post', :locals => {:post => post}) %>
 		<%# end %>
 			<%= render(:partial => 'shared/post', :locals => {:post => @post}) %>
-		
-	
 
+		<div class="comments">
+			<%= render(:partial => 'shared/comment', :collection => @post.approved_comments) %>
+		</div>
 </div>
+
 
 <div id="right-column">
 	<%= render(:partial => 'custom/about') %>
