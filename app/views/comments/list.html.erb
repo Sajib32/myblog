@@ -4,12 +4,12 @@
 
   <p>Show:
       <%= link_to_unless_current('all', :status => 'all') %>&nbsp; |
-      <%= link_to_unless_current('new', :status => nil) %>&nbsp; |
+      <%= link_to_unless_current('new', :status => 'new') %>&nbsp; |
       <%= link_to_unless_current('approved', :status => 'approved') %>&nbsp; |
       <%= link_to_unless_current('spam', :status => 'spam') %>&nbsp;
   </p>
   
-  <%= form_for(@comments, :url => {:action => 'set_status'}) do %>
+  <%= form_for(:comments, :url => {:action => 'set_status'}) do %>
     <table>
       <tr>
         <th>&nbsp;</th>
@@ -31,7 +31,7 @@
           </div>
         </td>
         <td><%= comment.status %></td>
-        <td><%= comment.created_at.strftime('%m/%d/%y') %><br/><%=comment.created_at.strftime('%I:%m /%p') %></td>
+        <td><%= comment.created_at.strftime('%m/%d/%y') %><br/><%= comment.created_at.strftime('%I:%m /%p') %></td>
       </tr>
       <% end %>
     </table>

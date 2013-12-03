@@ -7,5 +7,6 @@
 				<div class="body"><%= prepare_post_body(post.content) %></div>
 				<div class="other-info">
 					<span class="categories">Posted in <%= post.categories.collect {|cat| cat.name}.to_sentence %></span>
+					<span class="comment-summary"><%= link_to(pluralize(post.approved_comments.size, 'comment'), :action => 'view_post', :id => post.id, :anchor => 'comments') %></span>
 				</div>
 			</div>

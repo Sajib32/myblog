@@ -21,6 +21,23 @@ class MainController < ApplicationController
 
   def view_post
     @post = Post.find(params[:id])
-    render(:template => 'shared/view_post')
+    @comment = Comment.new(params[:comment])
+    render(:template => 'shared/view_post', :layout => 'application')
   end
+
+  def add_comment
+    @post = Post.find(params[:id])
+    @comment = Comment.new(params[:comment])
+    @comment.status = 'new'
+    @comment.post = @post 
+    
+    if @comment.save 
+      flash[:notice] = 'Your comment was submitted successfully.'
+      redirect_to(:action => 'view_post', :id => @post.id)
+    else
+      flash[:notice] = 'Your comment was not submitted successfully.'
+      render(:template => 'shared/view_post', :layout => 'application')
+    end
+  end
+
 end
