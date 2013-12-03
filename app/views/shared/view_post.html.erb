@@ -12,13 +12,14 @@
 		<a name="comments"></a>
 			<%= render(:partial => 'shared/comment', :collection => @post.approved_comments) %>
 		</div>
-
+		<% if !@comment.blank? %>
 		<div class="comment-form">
 			<%= form_for(:comment, :url => {:action => "add_comment", :id => @post.id}) do |f| %>
 				<%= render(:partial => 'shared/comment_form', :locals => {:f => f}) %>
 				<%= submit_tag("Submit Comment", :style => "margin-left: 105px;") %>
 			<% end %>
 		</div>
+		<% end %>
 </div>
 
 
