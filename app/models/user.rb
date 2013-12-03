@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   	has_many :posts, :foreign_key => 'author_id',
   		   :order => 'created_at ASC', :limit => 5
 
+    validates_uniqueness_of :username
+
   	attr_accessor :password
   	attr_protected :hashed_password, :salt
 

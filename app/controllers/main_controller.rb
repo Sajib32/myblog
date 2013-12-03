@@ -21,7 +21,7 @@ class MainController < ApplicationController
 
   def view_post
     @post = Post.find(params[:id])
-    @comment = Comment.new(params[:comment])
+    @comment = Comment.new
     render(:template => 'shared/view_post', :layout => 'application')
   end
 

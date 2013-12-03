@@ -12,7 +12,9 @@
 		<a name="comments"></a>
 			<%= render(:partial => 'shared/comment', :collection => @post.approved_comments) %>
 		</div>
-		<% if !@comment.blank? %>
+
+
+		<% if !@comment.blank? %>  <!-- set comment blank as comment is not initiated in posts controller -->
 		<div class="comment-form">
 			<%= form_for(:comment, :url => {:action => "add_comment", :id => @post.id}) do |f| %>
 				<%= render(:partial => 'shared/comment_form', :locals => {:f => f}) %>
@@ -25,4 +27,5 @@
 
 <div id="right-column">
 	<%= render(:partial => 'custom/about') %>
+	<%= render(:partial => 'categories') %>
 </div>
