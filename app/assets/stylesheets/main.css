@@ -18,6 +18,10 @@
 
 .about { font-size: .8em; color: #004080; padding-top: 1em; }
 
+#categories, #archive-list { font-size: .8em; color: #004080; }
+#categories h4, #archive-list h4 { margin-bottom: 0; }
+#categories ul, #archive-list ul { margin: .5em; padding-left: 0;
+ list-style: none; }
 
 /* Errors */
 .fieldWithErrors { }

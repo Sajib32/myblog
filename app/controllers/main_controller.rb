@@ -2,18 +2,29 @@ class MainController < ApplicationController
   
   include MainHelper 
 
+  before_filter :set_all_categories
+
   def index
     list
     render(:action => 'list')
   end
 
   def list
+    @all_categories = Category.new
+    @all_categories = Category.find(:all, :order => 'name ASC')
     @posts = Post.find(:all,
-        :conditions => "status = 'published' ",
-        :order => 'created_at DESC')
+    :joins => [:author, :categories],
+    :conditions => ["status='published'",
+      params[:id]])
+
   end
 
   def category
+    @posts = Post.find(:all,
+    :joins => [:author, :categories],
+    :conditions => ["status='published' AND categories.id = ?",
+      params[:id]])
+render('list')
   end
 
   def archive
@@ -40,4 +51,9 @@ class MainController < ApplicationController
     end
   end
 
+  private #-----
+
+  def set_all_categories
+    @all_categories = Category.find(:all, :order => 'name ASC')
+  end
 end

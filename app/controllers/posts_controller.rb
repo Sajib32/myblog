@@ -14,7 +14,7 @@ class PostsController < ApplicationController
 		@posts = Post.order('posts.created_at DESC')
 	end
 
-	def new 
+	def new
 		@post = Post.new
 		@user_list = get_user_list
 		@all_categories = get_all_categories
@@ -23,6 +23,7 @@ class PostsController < ApplicationController
 	def show
 		# this action will preview the public view of the post
 		@post = Post.find(params[:id])
+		@all_categories = Category.find(:all, :order => 'name ASC')
 		#render(:controller => 'main', :action => 'view_post')
 		render(:template => 'shared/view_post', :layout => 'application')
 	end
